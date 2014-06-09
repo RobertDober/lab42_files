@@ -5,12 +5,26 @@
 Creating a lazy enumerator is easy, e.g.
 
 ```ruby
-    Enumerator.new do | yielder |
-      Dir.glob("**").each do | file |
-        yielder << file
-      end
-    end.lazy
+  Dir.enum_for( :glob, "**" ).lazy
 ```
 
 However the yielded objects are just strings, not something we find too useful.
+
+Assuming the existance of the following directory structure
+
+```ruby
+    with_dir_structure <<-EOS
+    ├── b
+    │   ├── one
+    │   ├── two
+    │   └── three
+    ├── bin
+    ├── boxes
+    │   └── centos64
+    └── work
+        ├── lab42
+        │   ├── lib
+        └── tutorial
+    EOS
+```
 
